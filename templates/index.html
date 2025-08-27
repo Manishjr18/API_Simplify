@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simplify Money – Gold AI</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: #f5f7fa;
+      font-family: 'Roboto', sans-serif;
+    }
+    .card {
+      margin-top: 40px;
+      border-radius: 16px;
+    }
+    .response-box {
+      margin-top: 25px;
+      padding: 20px;
+      border-radius: 16px;
+      background: #ffffff;
+    }
+    .nudge-card {
+      border-radius: 12px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="row center">
+      <h4 class="blue-text text-darken-2">💰 Simplify Money – Gold AI</h4>
+      <p class="grey-text">Ask me anything about Gold investments</p>
+    </div>
+
+    <!-- Question Box -->
+    <div class="row">
+      <div class="col s12 m8 offset-m2">
+        <div class="card z-depth-3">
+          <div class="card-content">
+            <span class="card-title">Ask Question</span>
+            <form id="askForm">
+              <div class="input-field">
+                <input id="question" type="text" class="validate" required>
+                <label for="question">Your Question</label>
+              </div>
+              <button class="btn waves-effect waves-light blue" type="submit">
+                Ask <i class="material-icons right">send</i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Response Box -->
+    <div class="row" id="responseRow" style="display:none;">
+      <div class="col s12 m8 offset-m2">
+        <div id="responseBox" class="response-box z-depth-2">
+          <h6 class="blue-text">AI Response:</h6>
+          <p id="answerText" class="flow-text"></p>
+          <div id="nudgeBox"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    // Fix floating label issue
+    document.addEventListener('DOMContentLoaded', function() {
+      M.updateTextFields();
+    });
+
+    document.getElementById("askForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const question = document.getElementById("question").value;
+
+      const res = await fetch("http://127.0.0.1:5000/ask", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question })
+      });
+
+      if (!res.ok) {
+        M.toast({html: '❌ Something went wrong!', classes: 'red'});
+        return;
+      }
+
+      const data = await res.json();
+      document.getElementById("responseRow").style.display = "block";
+      document.getElementById("answerText").textContent = data.answer;
+
+      if (data.related) {
+        document.getElementById("nudgeBox").innerHTML = `
+          <div class="card-panel yellow lighten-5 nudge-card">
+            <span>${data.nudge}</span>
+            <br><br>
+            <a class="btn green" href="purchase.html">Proceed to Buy Gold</a>
+          </div>`;
+      } else {
+        document.getElementById("nudgeBox").innerHTML = "";
+      }
+    });
+  </script>
+</body>
+</html>

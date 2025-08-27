@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Buy Digital Gold</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: #f5f7fa;
+      font-family: 'Roboto', sans-serif;
+    }
+    .card {
+      margin-top: 50px;
+      border-radius: 16px;
+    }
+    .modal {
+      border-radius: 16px;
+    }
+    .success-icon {
+      font-size: 60px;
+      color: #2e7d32;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body class="container">
+
+  <div class="row center">
+    <h4 class="blue-text text-darken-2">💰 Buy Digital Gold</h4>
+    <p class="grey-text">Secure & Easy Digital Gold Purchase</p>
+  </div>
+
+  <!-- Purchase Card -->
+  <div class="row">
+    <div class="col s12 m8 offset-m2">
+      <div class="card z-depth-3">
+        <div class="card-content">
+          <span class="card-title">Enter Purchase Details</span>
+          <form id="purchaseForm">
+            <div class="input-field">
+              <input id="user_name" type="text" required>
+              <label for="user_name">Your Name</label>
+            </div>
+            <div class="input-field">
+              <input id="amount" type="number" required min="100">
+              <label for="amount">Amount (₹)</label>
+            </div>
+            <button class="btn waves-effect waves-light green" type="submit" id="purchaseBtn">
+              Purchase <i class="material-icons right">shopping_cart</i>
+            </button>
+          </form>
+        </div>
+      </div>
+      <div id="purchaseResult" style="margin-top:15px;"></div>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div id="successModal" class="modal">
+    <div class="modal-content center">
+      <i class="material-icons success-icon">check_circle</i>
+      <h5 class="green-text">Purchase Successful!</h5>
+      <p id="orderDetails">Your order has been placed successfully.</p>
+      <div class="section">
+        <button id="doneBtn" class="btn green">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
