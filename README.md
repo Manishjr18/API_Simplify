@@ -14,7 +14,8 @@ This project emulates a **Kuberi-style workflow** for **gold investments** with 
 ```
 simplify_ai_flask/
 ├── app.py
-├── .env.example
+├── .env
+├── purchases.db
 ├── requirements.txt
 ├── README.md
 ├── app/
@@ -27,7 +28,11 @@ simplify_ai_flask/
 │   │   ├── ask.py
 │   │   └── purchase.py
 │   └── utils/
-│       └── nlp.py
+├── static/
+│   ├── script.js
+├── templates/
+│   ├── index.html
+│   ├── purchase.html  
 └── Procfile
 ```
 
