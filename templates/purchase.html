@@ -93,7 +93,7 @@
       const amount = document.getElementById("amount").value.trim();
 
       try {
-        const res = await fetch("http://127.0.0.1:5000/purchase", {
+        const res = await fetch("/purchase", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ user_name, amount })
