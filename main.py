@@ -150,7 +150,7 @@ def get_purchase(purchase_id):
 def home_page():
     return render_template('index.html')
 
-@app.route('/purchase-page')
+@app.route('/purchase.html')
 def purchase_page():
     return render_template('purchase.html')
 
